@@ -1,6 +1,6 @@
 # Build Twin Finder for macOS without owning a Mac
 
-Status: cloud build prepared on the macos-build branch; consult GitHub Actions for the latest result.
+Status: the Mac test build passed automated checks on October 31, 2026. See MACOS_BUILD_STATUS.md for the download and verification limits.
 
 This package targets Apple M-series Macs running macOS 15 or later. It uses the same matching, AI, review, learning, storage and export modules and the same model files as the Windows release. The only runtime edits select a Mac font and the macOS Application Support location for the recent-jobs list. Windows behavior is preserved.
 

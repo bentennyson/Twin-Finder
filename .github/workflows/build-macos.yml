@@ -13,20 +13,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  retire-old-build-branch:
-    runs-on: ubuntu-24.04
-    permissions:
-      contents: write
-    steps:
-      - name: Remove the superseded build branch
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          expected=4277bff520825ea44687bbdc072f50c162cfc486
-          current=$(gh api repos/bentennyson/Twin-Finder/git/ref/heads/codex/macos-build --jq '.object.sha')
-          test "$current" = "$expected"
-          gh api --method DELETE repos/bentennyson/Twin-Finder/git/refs/heads/codex/macos-build
-
   apple-silicon:
     runs-on: macos-15
     timeout-minutes: 35

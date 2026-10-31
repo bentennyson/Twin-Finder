@@ -1,5 +1,4 @@
-# Twin Finder desktop AI project — committee revision
-
+# Twin Finder desktop AI project 
 Twin Finder identifies candidate duplicate publications, explains a learned matching score, learns proposed classifier updates from reviewed pairs, and exports only reviewer-approved consolidations. The desktop application selects local files directly; it does not upload bibliographic records to an external AI service.
 
 This is the complete replacement source project for an 8 GB Windows computer. Keep the earlier project in a separate archive. Do not overlay isolated files from this version onto an older engine: the interface, model, storage format and research results must agree.
@@ -132,8 +131,8 @@ python research/verify_live_review.py --input "D:\Sample run\DBLP-Scholar_prepar
 
 Adjust input paths to the downloaded Leipzig files. research/prepare_bibliographic_dataset.py converts the original DBLP–Scholar archive without modifying it. data/dblp_scholar/README.md records the source and hashes; the external archive is not silently replaced by synthetic records.
 
-## macOS packaging branch
+## macOS test build
 
-The macos-build branch adds Apple-silicon macOS 15+ packaging. See PACKAGING_MACOS.md and MACOS_BUILD_STATUS.md. GitHub Actions runs regression tests, checks the bundled AI and UI, and creates a DMG. The initial download is an ad-hoc signed test build, without Apple notarization.
+The macos-build branch adds Apple-silicon macOS 15+ packaging. See PACKAGING_MACOS.md and MACOS_BUILD_STATUS.md. The automated Mac run passed all 28 tests, then verified the app and the copy inside its DMG. The initial download is ad-hoc signed and has not been notarized by Apple.
 
-Windows report evidence and screenshot provenance refer to the exact D-drive snapshot on main (d2449e69aff0843130383317e4d534604a103b19). Reproduce its full evidence check on that commit. Mac font/settings changes do not alter the AI or feedback services, but this branch is not byte-identical to the Windows UI source.
+Windows report evidence and screenshot provenance refer to the Windows snapshot d2449e69aff0843130383317e4d534604a103b19. Reproduce its full evidence check on that commit. Mac font/settings changes do not alter the AI or feedback services; the Windows report makes no Mac timing or usability claims.

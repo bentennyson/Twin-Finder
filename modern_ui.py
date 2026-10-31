@@ -4,6 +4,7 @@ import os
 import time
 import tkinter as tk
 from tkinter import ttk
+from app_platform import UI_FONT
 
 COLORS = {
     'canvas': '#000000', 'surface': '#000000', 'sidebar': '#000000',
@@ -49,23 +50,23 @@ def configure_theme(root):
     root.option_add('*TCombobox*Listbox.selectBackground',c['selection'])
     root.option_add('*TCombobox*Listbox.selectForeground',c['text'])
     style=ttk.Style(root);style.theme_use('clam')
-    style.configure('.',font=('Segoe UI',10),background=c['surface'],foreground=c['text'])
+    style.configure('.',font=(UI_FONT,10),background=c['surface'],foreground=c['text'])
     for name,bg in [('TFrame',c['surface']),('Chrome.TFrame',c['canvas']),('Sidebar.TFrame',c['sidebar']),('Card.TFrame',c['card'])]:
         style.configure(name,background=bg)
     style.configure('TLabel',background=c['surface'],foreground=c['text'],anchor='w')
     style.configure('Muted.TLabel',foreground=c['muted'])
     style.configure('Chrome.TLabel',background=c['canvas'],foreground=c['muted'])
-    style.configure('Heading.TLabel',font=('Segoe UI',46),background=c['canvas'])
-    style.configure('Hero.TLabel',font=('Segoe UI',30),background=c['canvas'])
-    style.configure('Sub.TLabel',font=('Segoe UI',13,'bold'))
-    style.configure('Kicker.TLabel',font=('Segoe UI',9,'bold'),foreground=c['muted'])
-    style.configure('Banner.TLabel',font=('Segoe UI',10),foreground=c['muted'])
+    style.configure('Heading.TLabel',font=(UI_FONT,46),background=c['canvas'])
+    style.configure('Hero.TLabel',font=(UI_FONT,30),background=c['canvas'])
+    style.configure('Sub.TLabel',font=(UI_FONT,13,'bold'))
+    style.configure('Kicker.TLabel',font=(UI_FONT,9,'bold'),foreground=c['muted'])
+    style.configure('Banner.TLabel',font=(UI_FONT,10),foreground=c['muted'])
     style.configure('Sidebar.TLabel',background=c['sidebar'],foreground=c['muted'])
-    style.configure('Count.TLabel',background=c['sidebar'],font=('Segoe UI',27),foreground=c['text'])
+    style.configure('Count.TLabel',background=c['sidebar'],font=(UI_FONT,27),foreground=c['text'])
     style.configure('Card.TLabel',background=c['card'])
     style.configure('CardMuted.TLabel',background=c['card'],foreground=c['muted'])
-    style.configure('CardTitle.TLabel',background=c['card'],font=('Segoe UI',12,'bold'))
-    style.configure('Score.TLabel',background=c['card'],font=('Segoe UI',25),foreground=c['accent'])
+    style.configure('CardTitle.TLabel',background=c['card'],font=(UI_FONT,12,'bold'))
+    style.configure('Score.TLabel',background=c['card'],font=(UI_FONT,25),foreground=c['accent'])
     style.configure('TButton',padding=(16,11),background=c['card'],foreground=c['text'],
                     bordercolor=c['line'],lightcolor=c['card'],darkcolor=c['card'],borderwidth=1,relief='flat')
     style.map('TButton',background=[('disabled',c['sidebar']),('pressed',c['selection']),('active',c['subtle'])],
@@ -92,7 +93,7 @@ def configure_theme(root):
     style.layout('TNotebook.Tab',[])
     style.configure('Treeview',rowheight=30,background=c['card'],fieldbackground=c['card'],
                     bordercolor=c['line'],lightcolor=c['line'],darkcolor=c['line'],borderwidth=0)
-    style.configure('Treeview.Heading',font=('Segoe UI',10,'bold'),background=c['subtle'],
+    style.configure('Treeview.Heading',font=(UI_FONT,10,'bold'),background=c['subtle'],
                     foreground=c['muted'],padding=(10,8),relief='flat')
     style.map('Treeview',background=[('selected',c['selection'])],foreground=[('selected',c['text'])])
     style.map('Treeview.Heading',background=[('active',c['line'])])

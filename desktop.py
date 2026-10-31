@@ -1,7 +1,6 @@
-"""Windows desktop UI. Background tasks call the same services as cli.py."""
+"""Desktop UI. Background tasks call the same services as cli.py."""
 import argparse
 import json
-import os
 import queue
 import threading
 import traceback
@@ -21,6 +20,7 @@ import twin_workflow as workflow
 
 
 import twin_core as core
+from app_platform import UI_FONT, recent_jobs_path
 from modern_ui import COLORS, configure_theme, create_root, Card, SimilarityBar, ActivityRing, ReviewTrack, wrap_label
 
 
@@ -52,7 +52,7 @@ class App:
         shell=ttk.Frame(root);shell.pack(fill='both',expand=True)
         sidebar=ttk.Frame(shell,style='Sidebar.TFrame',padding=(22,18),width=round(228*self.ui_scale))
         sidebar.pack(side='left',fill='y');sidebar.pack_propagate(False)
-        ttk.Label(sidebar,text='WORKSPACE',style='Sidebar.TLabel',font=('Segoe UI',9,'bold')).pack(anchor='w',pady=(0,18))
+        ttk.Label(sidebar,text='WORKSPACE',style='Sidebar.TLabel',font=(UI_FONT,9,'bold')).pack(anchor='w',pady=(0,18))
         main_area=ttk.Frame(shell);main_area.pack(side='left',fill='both',expand=True)
         main=ttk.Frame(main_area,padding=(28,18))
         main.place(relx=.5,y=0,anchor='n',relwidth=1,relheight=1)
@@ -74,13 +74,13 @@ class App:
             b.pack(fill='x',pady=3);self.nav_buttons[str(frame)]=b
         self.tabs.bind('<<NotebookTabChanged>>',self.update_navigation)
         ttk.Separator(sidebar).pack(fill='x',pady=16)
-        ttk.Label(sidebar,text='PAIRS REVIEWED',style='Sidebar.TLabel',font=('Segoe UI',9,'bold')).pack(anchor='w')
+        ttk.Label(sidebar,text='PAIRS REVIEWED',style='Sidebar.TLabel',font=(UI_FONT,9,'bold')).pack(anchor='w')
         self.review_count=tk.StringVar(value='0 / 0')
         self.count_label=ttk.Label(sidebar,textvariable=self.review_count,style='Count.TLabel');self.count_label.pack(fill='x',pady=(6,10))
         self.count_label.bind('<Configure>',lambda event:self.fit_review_count())
         self.review_progress=ReviewTrack(sidebar);self.review_progress.pack(fill='x')
         wrap_label(sidebar,text='Of the pairs ready so far. Skipped pairs remain unreviewed.',style='Sidebar.TLabel').pack(fill='x',pady=(8,14))
-        ttk.Label(sidebar,text='YOUR DATASET',style='Sidebar.TLabel',font=('Segoe UI',9,'bold')).pack(anchor='w')
+        ttk.Label(sidebar,text='YOUR DATASET',style='Sidebar.TLabel',font=(UI_FONT,9,'bold')).pack(anchor='w')
         self.short_filename=tk.StringVar(value=self.filename.get())
         self.filename.trace_add('write',self.update_short_filename)
         wrap_label(sidebar,textvariable=self.short_filename,style='Sidebar.TLabel').pack(fill='x',pady=(8,16))
@@ -117,8 +117,8 @@ class App:
     def fit_review_count(self):
         available=max(100,self.count_label.winfo_width())
         for size in range(24,11,-1):
-            if tkfont.Font(family='Segoe UI',size=size).measure(self.review_count.get())<=available:
-                self.count_label.configure(font=('Segoe UI',size));break
+            if tkfont.Font(family=UI_FONT,size=size).measure(self.review_count.get())<=available:
+                self.count_label.configure(font=(UI_FONT,size));break
 
     def update_activity(self):
         if self.busy:
@@ -244,13 +244,13 @@ class App:
         self.choose_button=self.button(f,'Choose your dataset  →',self.open_dataset_file,style='Primary.TButton');self.choose_button.pack(anchor='w')
         ttk.Label(f,text='CSV  /  JSONL  /  NDJSON     ·     Processed on this computer',style='Muted.TLabel').pack(anchor='w',pady=(10,22))
         wrap_label(f,textvariable=self.banner,style='Banner.TLabel').pack(fill='x',pady=(0,10))
-        self.data_summary=tk.Text(f,height=5,wrap='word',font=('Segoe UI',10),bg=COLORS['card'],fg=COLORS['text'],relief='flat',borderwidth=0,padx=18,pady=16,spacing3=5,selectbackground=COLORS['selection'],selectforeground=COLORS['text'])
+        self.data_summary=tk.Text(f,height=5,wrap='word',font=(UI_FONT,10),bg=COLORS['card'],fg=COLORS['text'],relief='flat',borderwidth=0,padx=18,pady=16,spacing3=5,selectbackground=COLORS['selection'],selectforeground=COLORS['text'])
         self.data_summary.pack(fill='both',expand=True)
         self.set_text(self.data_summary,'01  Open a file\nStandard columns are detected automatically. Ambiguous columns need a quick confirmation.\n\n02  Review the evidence\nCompare two papers, see the AI signals, then accept, reject or skip. Your decisions are saved.\n\n03  Learn and export\nUse reviewed pairs to propose a classifier update. Export only consolidations you approved.\n\nLocal processing has no fixed upload cap. Disk space, processing time and candidate limits still apply.')
         self.layout_column(f)
 
     def recent_path(self):
-        return Path(os.environ.get('LOCALAPPDATA',str(Path.home())))/'TwinFinder'/'recent.json'
+        return recent_jobs_path()
 
     def update_recent_menu(self):
         self.recent_menu.delete(0,'end')
@@ -357,12 +357,12 @@ class App:
         wrap_label(prediction.body,textvariable=self.prediction_note,style='CardMuted.TLabel').grid(row=1,column=0,sticky='ew',pady=(6,0))
         self.score_text=tk.StringVar(value='—')
         ttk.Label(prediction.body,textvariable=self.score_text,style='Score.TLabel').grid(row=0,column=1,sticky='e',padx=(20,0))
-        ttk.Label(prediction.body,text='MODEL SCORE',style='CardMuted.TLabel',font=('Segoe UI',8,'bold')).grid(row=1,column=1,sticky='e',padx=(20,0))
+        ttk.Label(prediction.body,text='MODEL SCORE',style='CardMuted.TLabel',font=(UI_FONT,8,'bold')).grid(row=1,column=1,sticky='e',padx=(20,0))
         self.cards=ttk.Frame(f);self.cards.pack(fill='x',pady=(0,20))
         self.paper_cards=[];self.paper_values=[]
         for letter in ('A','B'):
             card=Card(self.cards);self.paper_cards.append(card)
-            ttk.Label(card.body,text='PAPER '+letter,style='CardMuted.TLabel',font=('Segoe UI',9,'bold')).pack(anchor='w',pady=(0,12))
+            ttk.Label(card.body,text='PAPER '+letter,style='CardMuted.TLabel',font=(UI_FONT,9,'bold')).pack(anchor='w',pady=(0,12))
             values={k:tk.StringVar(value='Waiting for a match' if k=='title' else '—') for k in core_fields()}
             wrap_label(card.body,textvariable=values['title'],style='CardTitle.TLabel').pack(fill='x',pady=(0,16))
             for key in ('authors','venue','year'):
@@ -446,7 +446,7 @@ class App:
                 button.grid(row=0 if wide else i,column=i if wide else 0,sticky='ew',padx=(0,8) if wide and i<2 else 0,pady=(0,8))
         actions.bind('<Configure>',arrange_actions);arrange_actions()
         proposal_frame=ttk.Frame(f);proposal_frame.pack(fill='both',expand=True,pady=12)
-        self.learning_text=tk.Text(proposal_frame,height=13,wrap='word',font=('Segoe UI',10),bg=COLORS['subtle'],fg=COLORS['text'],relief='flat',borderwidth=0,highlightthickness=1,highlightbackground=COLORS['line'],highlightcolor=COLORS['accent'],padx=14,pady=12,spacing1=2,spacing3=4,selectbackground=COLORS['selection'],selectforeground=COLORS['text'])
+        self.learning_text=tk.Text(proposal_frame,height=13,wrap='word',font=(UI_FONT,10),bg=COLORS['subtle'],fg=COLORS['text'],relief='flat',borderwidth=0,highlightthickness=1,highlightbackground=COLORS['line'],highlightcolor=COLORS['accent'],padx=14,pady=12,spacing1=2,spacing3=4,selectbackground=COLORS['selection'],selectforeground=COLORS['text'])
         proposal_scroll=ttk.Scrollbar(proposal_frame,orient='vertical',command=self.learning_text.yview)
         self.learning_text.configure(yscrollcommand=proposal_scroll.set)
         proposal_scroll.pack(side='right',fill='y');self.learning_text.pack(side='left',fill='both',expand=True)

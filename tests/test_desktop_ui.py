@@ -11,10 +11,20 @@ import progressive
 import twin_workflow as workflow
 
 
+def pump(root):
+    """Use the app's native event loop with a bounded tick on every platform.
+
+    Canvas redraws can keep update() draining indefinitely on macOS. A
+    scheduled quit keeps assertions bounded without disabling any callbacks.
+    """
+    root.after(10, root.quit)
+    root.mainloop()
+
+
 def wait_review(root,app):
     deadline=time.monotonic()+8
     while (app.review_pending or time.monotonic()<app.review_cooldown) and time.monotonic()<deadline:
-        root.update();time.sleep(.01)
+        pump(root);time.sleep(.01)
     assert app.review_pending is None
     assert time.monotonic()>=app.review_cooldown
 
@@ -87,11 +97,11 @@ def test_activity_animation_remains_responsive_and_stops(tmp_path):
         initial=app.progress.phase
         deadline=time.monotonic()+.2
         while time.monotonic()<deadline:
-            root.update();time.sleep(.01)
+            pump(root);time.sleep(.01)
         assert app.progress.phase!=initial
         release.set();deadline=time.monotonic()+2
         while app.busy and time.monotonic()<deadline:
-            root.update();time.sleep(.01)
+            pump(root);time.sleep(.01)
         assert not app.busy
         assert not app.progress.running and app.progress.timer is None
         assert str(app.choose_button.cget('state'))=='normal'
@@ -156,7 +166,7 @@ def test_review_lock_wait_keeps_ui_alive_and_failure_stays_on_pair(tmp_path,monk
             app.save_review('reject')
             root.after(30,lambda:ticks.append(True))
             until=time.monotonic()+.15
-            while time.monotonic()<until:root.update();time.sleep(.01)
+            while time.monotonic()<until:pump(root);time.sleep(.01)
             assert ticks and app.review_pending and app.current==1
             assert all(str(b.cget('state'))=='disabled' for b in app.review_actions)
             assert workflow.inspect(job,1)['latest_review'] is None
@@ -223,7 +233,7 @@ def test_close_waits_for_pending_review_to_finish(tmp_path):
             app.save_review('accept');app.close()
             assert app.pending_close and root.winfo_exists()
         deadline=time.monotonic()+5
-        while app.review_pending and time.monotonic()<deadline:root.update();time.sleep(.01)
+        while app.review_pending and time.monotonic()<deadline:pump(root);time.sleep(.01)
         assert app.review_pending is None
         assert workflow.inspect(job,1)['latest_review']['decision']=='accept'
         try:

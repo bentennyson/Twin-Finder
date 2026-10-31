@@ -1,0 +1,90 @@
+name: Build Mac application
+
+on:
+  push:
+    branches: [macos-build]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: macos-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  retire-old-build-branch:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: Remove the superseded build branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          expected=4277bff520825ea44687bbdc072f50c162cfc486
+          current=$(gh api repos/bentennyson/Twin-Finder/git/ref/heads/codex/macos-build --jq '.object.sha')
+          test "$current" = "$expected"
+          gh api --method DELETE repos/bentennyson/Twin-Finder/git/refs/heads/codex/macos-build
+
+  apple-silicon:
+    runs-on: macos-15
+    timeout-minutes: 35
+    env:
+      MACOSX_DEPLOYMENT_TARGET: '15.0'
+      PIP_DISABLE_PIP_VERSION_CHECK: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - name: Check out source and bundled models
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install native Python with bundled Tcl/Tk
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(uname -m)" = arm64
+          curl --fail --location --retry 3 --proto '=https' --tlsv1.2 \
+            https://www.python.org/ftp/python/3.13.3/python-3.13.3-macos11.pkg \
+            -o "$RUNNER_TEMP/python.pkg"
+          pkgutil --check-signature "$RUNNER_TEMP/python.pkg" | tee "$RUNNER_TEMP/python-signature.txt"
+          grep -F 'Developer ID Installer: Python Software Foundation' "$RUNNER_TEMP/python-signature.txt"
+          sudo installer -pkg "$RUNNER_TEMP/python.pkg" -target /
+          /Library/Frameworks/Python.framework/Versions/3.13/bin/python3.13 -m venv .venv
+          echo "$GITHUB_WORKSPACE/.venv/bin" >> "$GITHUB_PATH"
+
+      - name: Install pinned runtime and build dependencies
+        run: |
+          python -m pip install -r requirements.txt PyInstaller==6.21.0 pytest==8.4.2
+          python -m pip check
+          mkdir -p build-evidence
+          python -m pip freeze > build-evidence/python-packages.txt
+          python -c "import platform, tkinter; assert platform.machine() == 'arm64'; root=tkinter.Tk(); root.withdraw(); root.update(); root.destroy()"
+
+      - name: Test review workflow, AI, feedback and storage
+        timeout-minutes: 4
+        run: python -m pytest tests -vv -s -o faulthandler_timeout=45 --junitxml=build-evidence/tests.xml
+
+      - name: Build and verify the app and disk image
+        run: python build_macos.py --version 1.0.0
+
+      - name: Save Mac download
+        uses: actions/upload-artifact@v4
+        with:
+          name: TwinFinder-macOS-AppleSilicon-test-build
+          path: |
+            dist-macos/*.dmg
+            dist-macos/SHA256SUMS.txt
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
+
+      - name: Save build evidence even if a check fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: TwinFinder-macOS-build-evidence
+          path: build-evidence/
+          if-no-files-found: warn
+          retention-days: 7

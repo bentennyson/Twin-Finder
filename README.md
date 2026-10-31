@@ -131,3 +131,9 @@ python research/verify_live_review.py --input "D:\Sample run\DBLP-Scholar_prepar
 ```
 
 Adjust input paths to the downloaded Leipzig files. research/prepare_bibliographic_dataset.py converts the original DBLP–Scholar archive without modifying it. data/dblp_scholar/README.md records the source and hashes; the external archive is not silently replaced by synthetic records.
+
+## macOS packaging branch
+
+The macos-build branch adds Apple-silicon macOS 15+ packaging. See PACKAGING_MACOS.md and MACOS_BUILD_STATUS.md. GitHub Actions runs regression tests, checks the bundled AI and UI, and creates a DMG. The initial download is an ad-hoc signed test build, without Apple notarization.
+
+Windows report evidence and screenshot provenance refer to the exact D-drive snapshot on main (d2449e69aff0843130383317e4d534604a103b19). Reproduce its full evidence check on that commit. Mac font/settings changes do not alter the AI or feedback services, but this branch is not byte-identical to the Windows UI source.

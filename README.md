@@ -1,4 +1,12 @@
 # Twin Finder desktop AI project 
+
+## Download the application
+
+- [Windows installer](https://github.com/bentennyson/Twin-Finder/releases/download/windows-v1.0.1/TwinFinderSetup-1.0.1-Windows-x64.exe)
+- [Mac test build (Apple silicon, macOS 15+)](https://github.com/bentennyson/Twin-Finder/releases/download/macos-v1.0.0-test/TwinFinder-1.0.0-macOS-AppleSilicon.dmg) — not Apple-notarized.
+
+See [installers](installers/README.md) for installation details, checksums and limitations.
+
 Twin Finder identifies candidate duplicate publications, explains a learned matching score, learns proposed classifier updates from reviewed pairs, and exports only reviewer-approved consolidations. The desktop application selects local files directly; it does not upload bibliographic records to an external AI service.
 
 This is the complete replacement source project for an 8 GB Windows computer. Keep the earlier project in a separate archive. Do not overlay isolated files from this version onto an older engine: the interface, model, storage format and research results must agree.

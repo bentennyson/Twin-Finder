@@ -1,0 +1,13 @@
+{
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "license": "Apache-2.0",
+  "pooling": "attention-masked mean then L2 normalization",
+  "max_tokens": 256,
+  "dimension": 384,
+  "sha256": {
+    "encoder.pt": "fd023d847da56e1ba25b74ada4c30ee0df9575b629b6f8b892560daa4c1372e6",
+    "tokenizer.json": "0d3aef594edd5f9b53e7f814277a9171dc70ff93eb66bda6e01f7aa53997d963"
+  },
+  "reference_max_absolute_error": 2.253800630569458e-07
+}

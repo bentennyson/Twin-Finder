@@ -1,0 +1,10 @@
+Pretrained neural model: sentence-transformers/all-MiniLM-L6-v2
+Source: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+Pinned revision: 1110a243fdf4706b3f48f1d95db1a4f5529b4d41
+License: Apache License 2.0; the complete license is included as APACHE-2.0.txt.
+The encoder was converted to frozen TorchScript for offline CPU inference by
+research/prepare_encoder.py. Its pretrained weights were not fine-tuned.
+Mean pooling, L2 normalization and a 256-token limit are preserved. Conversion
+checks and artifact hashes are in encoder_manifest.json.
+base_classifier.json is the separately trained project-specific logistic
+matching classifier; its training code and benchmark provenance are supplied.

@@ -1,0 +1,9 @@
+............................                                             [100%]
+============================== warnings summary ===============================
+work/committee_final/project/tests/test_progressive.py::test_dynamic_padding_matches_fixed_padding
+work/committee_final/project/tests/test_system.py::test_neural_features_explanation_and_streaming_export
+  D:\Twin_Finder_Desktop_Source\project\.venv\Lib\site-packages\torch\jit\_serialization.py:176: DeprecationWarning: `torch.jit.load` is deprecated. Please switch to `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+28 passed, 2 warnings in 19.97s

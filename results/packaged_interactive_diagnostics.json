@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "neural_dimension": 384,
+  "score": 0.9829800665092684,
+  "duplicate_embedding_max_delta": 8.381903171539307e-08,
+  "duplicate_embedding_tolerance": 1e-06,
+  "tk_ui_constructed": true
+}

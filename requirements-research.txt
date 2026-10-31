@@ -1,0 +1,6 @@
+-r requirements.txt
+sentence-transformers==5.2.2
+matplotlib==3.10.8
+psutil==7.2.2
+pytest==9.0.2
+pyinstaller==6.21.0

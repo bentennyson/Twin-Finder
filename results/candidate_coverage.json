@@ -1,0 +1,21 @@
+{
+  "records": 4910,
+  "known_positive_pairs": 2220,
+  "retrieved_known_positive_pairs": 2196,
+  "known_pair_candidate_recall": 0.9891891891891892,
+  "candidate_stats": {
+    "records": 4910,
+    "comparison_budget": 3000000,
+    "iterations": 272342,
+    "compared_pairs": 209583,
+    "oversized_token_blocks": 29,
+    "large_exact_groups": 0,
+    "budget_reached": false,
+    "max_pairs": 10000,
+    "title_prefilter": 0.5,
+    "eligible_pairs": 6533,
+    "returned_pairs": 6533,
+    "queue_truncated": false
+  },
+  "limitations": "Recall against supplied positive links, not all true duplicates. Queue mixes within-source and cross-source pairs; unlabelled pairs are not counted as false positives. Small in-memory reference is tested against the disk implementation."
+}

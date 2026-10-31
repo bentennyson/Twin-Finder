@@ -1,0 +1,23 @@
+{
+  "inference_padding": "longest-in-batch-v1",
+  "data": {
+    "tableA.csv": "a83dfac196a4e263f3adac7aaf095c7198254a98fcaed0ec68d59130c74c43a7",
+    "tableB.csv": "bd103ffdccdff4d8b9d04c18d90d04110b70b6fc87dec83c4e52e9616c58431a",
+    "test.csv": "e49adc4590d24c18b1a9bbd96011d9c745e10432e10e93e050d856a206fac394",
+    "train.csv": "ad94b36b178bbf76023d3cee689565fbda1fe01b19d9a3926a51db382f45f0a5",
+    "valid.csv": "862f848ed3f3f005ae6c8997ecf571984bd575f6bbd319fc1a2170830a91132b"
+  },
+  "encoder": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "license": "Apache-2.0",
+    "pooling": "attention-masked mean then L2 normalization",
+    "max_tokens": 256,
+    "dimension": 384,
+    "sha256": {
+      "encoder.pt": "fd023d847da56e1ba25b74ada4c30ee0df9575b629b6f8b892560daa4c1372e6",
+      "tokenizer.json": "0d3aef594edd5f9b53e7f814277a9171dc70ff93eb66bda6e01f7aa53997d963"
+    },
+    "reference_max_absolute_error": 2.253800630569458e-07
+  }
+}

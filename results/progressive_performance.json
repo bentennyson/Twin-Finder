@@ -1,0 +1,54 @@
+{
+  "records": 66879,
+  "ready_pairs": 10000,
+  "status": "complete",
+  "source": "D:\\Sample run\\DBLP-Scholar_prepared\\bibliographic_records.csv",
+  "mapping": {
+    "title": "title",
+    "authors": "authors",
+    "venue": "venue",
+    "year": "year"
+  },
+  "stats": {
+    "records": 66879,
+    "comparison_budget": 3000000,
+    "iterations": 1556863,
+    "compared_pairs": 1234147,
+    "oversized_token_blocks": 109047,
+    "budget_reached": false,
+    "max_pairs": 10000,
+    "eligible_pairs": 35572,
+    "returned_pairs": 10000,
+    "queue_truncated": true,
+    "retrieval": "incremental-v1: prior exact titles and up to 3 rare token blocks; 32 prior records per input row; ready buffer 50; unscored cross-source candidates prioritized when source column exists",
+    "title_prefilter": 0.5,
+    "scan_complete": true,
+    "unselected_candidates": 25572
+  },
+  "timing": {
+    "elapsed_seconds": 74.88001299998723,
+    "first_pair_seconds": 3.197324699955061,
+    "first_50_seconds": 4.327445899951272
+  },
+  "error": null,
+  "version": 0,
+  "wall_seconds": 74.94310869998299,
+  "peak_process_mib": 382.35546875,
+  "milestones": {
+    "1": 3.2243596999906003,
+    "50": 4.354804400005378,
+    "500": 43.660940399975516,
+    "1000": 45.007121499977075,
+    "5000": 64.01875669998117,
+    "10000": 74.87718439998571
+  },
+  "input_bytes": 12451864,
+  "input_sha256": "a2600158f31b5e680ea4a8606db54a49dfdb599306de3e43e407a58b6757202a",
+  "source_sha256": {
+    "progressive.py": "672d0a2e4552900d2048b0e1972236bc0c142036336f1a0170231cd761eb0cc1",
+    "ai_model.py": "4ced35f65cd9e1134143b52f977b7ebca158af4280273b181056307eb361ade0",
+    "storage.py": "04f042686119799c3a7be20a59439d07aab6c8b581b006a33b756693910e058f",
+    "twin_workflow.py": "909e5b4d13d589c84d6f94dab749a46383ba6b752df4f0c53d264381e288165c"
+  },
+  "interpretation": "One run on this computer; sampled process memory, not whole-system RAM. Discovery-order bounded queue, not globally ranked. No accuracy claim."
+}

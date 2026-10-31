@@ -1,0 +1,33 @@
+{
+  "dblp_acm": {
+    "known_positive_links": 2220,
+    "retrieved_positive_links": 2196,
+    "known_link_recall": 0.9891891891891892,
+    "returned_pairs": 5927,
+    "stats": {
+      "records": 4910,
+      "comparison_budget": 3000000,
+      "iterations": 93512,
+      "compared_pairs": 77722,
+      "oversized_token_blocks": 2772,
+      "budget_reached": false,
+      "max_pairs": 10000,
+      "eligible_pairs": 5927,
+      "returned_pairs": 5927,
+      "queue_truncated": false,
+      "retrieval": "incremental-v1: prior exact titles and up to 3 rare token blocks; 32 prior records per input row; ready buffer 50; unscored cross-source candidates prioritized when source column exists",
+      "title_prefilter": 0.5,
+      "scan_complete": true,
+      "unselected_candidates": 0
+    }
+  },
+  "scope": "Known-link retrieval only. Unknown within-source pairs are not scored as negatives. No comparison to an untouched independent test.",
+  "source_sha256": "672d0a2e4552900d2048b0e1972236bc0c142036336f1a0170231cd761eb0cc1",
+  "dblp_scholar": {
+    "known_positive_links": 5347,
+    "retrieved_positive_links": 4417,
+    "known_link_recall": 0.826070693847017,
+    "cross_source_returned_pairs": 6706,
+    "mapping_sha256": "757ca3c5daa0ec77ade3300df6ee8ab9fe2a989b3d09da30be72ecf3ef8eba10"
+  }
+}

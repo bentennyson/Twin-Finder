@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "checks": [
+    "Benchmark inputs, evaluated source and encoder checksums match recorded provenance.",
+    "Every reported test metric is reproduced from the saved pair predictions.",
+    "Retained benchmark pairs respect the saved record partitions.",
+    "Feedback replay counts and prediction changes agree with the saved rows.",
+    "Progressive source hashes, coverage arithmetic and timing ordering are consistent; rerun the measurements to reproduce discovery.",
+    "All four report figure files are present.",
+    "Real-input data hashes, 80-save operational evidence, and nine actual-window screenshots match the delivered artifacts and source."
+  ],
+  "scope": "Cross-artifact consistency; not an independent accuracy or human-usability evaluation."
+}

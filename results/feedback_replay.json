@@ -1,0 +1,87 @@
+{
+  "simulation": "All 535 previously evaluated test-pair labels replayed as provisional review decisions. These labels are now consumed for development, not a fresh test.",
+  "counts": {
+    "training": {
+      "accept": 164,
+      "reject": 91
+    },
+    "validation": {
+      "accept": 24,
+      "reject": 21
+    },
+    "mixed \u2014 excluded from model fitting": {
+      "accept": 153,
+      "reject": 82
+    }
+  },
+  "proposal": {
+    "id": 1,
+    "created": "2026-10-25T07:01:12.701988+00:00",
+    "review_revision": 535,
+    "base_version": 0,
+    "model": {
+      "schema": 1,
+      "features": [
+        "title_edit",
+        "author_overlap",
+        "venue_equal",
+        "year_equal",
+        "title_semantic",
+        "title_available",
+        "authors_available",
+        "venue_available",
+        "year_available",
+        "semantic_available"
+      ],
+      "weights": [
+        2.83664141630444,
+        3.3894926750092407,
+        0.0,
+        3.4162374738788333,
+        1.72764330866165,
+        -1.3342374672059567,
+        -1.3061239358363415,
+        -1.3342374672059567,
+        -1.334237467205958,
+        -1.334237467205958
+      ],
+      "intercept": -1.334237467205958,
+      "threshold": 0.22116764054375712,
+      "encoder_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "l2": 0.05,
+      "epochs": 1200,
+      "version": 1,
+      "calibrated": false,
+      "training_rows": 255,
+      "training_positives": 164
+    },
+    "before": {
+      "tp": 24,
+      "fp": 1,
+      "fn": 0,
+      "tn": 20,
+      "precision": 0.96,
+      "recall": 1.0,
+      "f1": 0.9795918367346939
+    },
+    "after": {
+      "tp": 24,
+      "fp": 1,
+      "fn": 0,
+      "tn": 20,
+      "precision": 0.96,
+      "recall": 1.0,
+      "f1": 0.9795918367346939
+    },
+    "training_count": 255,
+    "validation_count": 45,
+    "eligible_to_apply": true,
+    "gate": "Validation F1 must not fall; recall may fall by at most 0.02. Heuristic deployment guard, not significance testing.",
+    "meaning": "Reviewer labels are provisional. Validation records are excluded from feedback training. Repeated validation is development monitoring, not independent evidence."
+  },
+  "activated": true,
+  "changed_scores": 535,
+  "changed_binary_predictions": 7,
+  "job_reproduction": "python research/feedback_demo.py --work <new empty working folder>",
+  "rollback_verified": true
+}

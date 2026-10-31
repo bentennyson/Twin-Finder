@@ -1,0 +1,51 @@
+{
+  "method": "Actual Tk application, fresh process per window, own-window device-context capture; no mockups or other desktop windows.",
+  "sample": "Synthetic 13-record sample.csv",
+  "feedback": "DBLP-ACM benchmark label replay, not human participants",
+  "images": [
+    {
+      "file": "01_open.png",
+      "sha256": "e671ba9b0188062112e16dd29f81891fb885d90e1e7f349f09f58a41ffb90a75"
+    },
+    {
+      "file": "02_dataset.png",
+      "sha256": "db513bac4a9af853762a01104d7993bfc818e4f7fbf4e92f6979a1809a7cfe22"
+    },
+    {
+      "file": "03_review.png",
+      "sha256": "c95b71d9e66bd09a00a575e6da513879213b777eb1a58c845214aee6bde6276b"
+    },
+    {
+      "file": "04_evidence.png",
+      "sha256": "54928177124310446d7d67efd64e2b3855fd70e60e9ebdce66be98b692e967df"
+    },
+    {
+      "file": "05_saved.png",
+      "sha256": "6f1283509638c0d3ec2acf26f21a3b2b1c98e4efc9712651e4cf8053418b7f8c"
+    },
+    {
+      "file": "06_feedback.png",
+      "sha256": "7e11a8f9c7237281f812ce9764fd0f8065a4e73dd5ecf9802300d0062fde20a9"
+    },
+    {
+      "file": "07_before.png",
+      "sha256": "442e3228d5bec4764bb55bb9d554b10ca9ef947ee5f32522fae59e8bee66b201"
+    },
+    {
+      "file": "08_after.png",
+      "sha256": "1c690f155dbc81e59551bcf0fb1d46829576a89ebacc70a1d6e6363f84a23e7f"
+    },
+    {
+      "file": "09_export.png",
+      "sha256": "110c8c762abb80bb0db4314a68dfed5fc6925b15673de68501b80c144041f399"
+    }
+  ],
+  "source_sha256": {
+    "desktop.py": "a75d48e456725c0741e5291cab74619c6a0cd3347cf9f6aadc090472fa8d6609",
+    "modern_ui.py": "911c8b9e38dd3c10e16a70a4fcd74c8e1c141caf52934ea23067488021fc7f03",
+    "storage.py": "04f042686119799c3a7be20a59439d07aab6c8b581b006a33b756693910e058f",
+    "twin_workflow.py": "909e5b4d13d589c84d6f94dab749a46383ba6b752df4f0c53d264381e288165c",
+    "progressive.py": "672d0a2e4552900d2048b0e1972236bc0c142036336f1a0170231cd761eb0cc1",
+    "ai_model.py": "4ced35f65cd9e1134143b52f977b7ebca158af4280273b181056307eb361ade0"
+  }
+}

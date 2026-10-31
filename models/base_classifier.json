@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "features": [
+    "title_edit",
+    "author_overlap",
+    "venue_equal",
+    "year_equal",
+    "title_semantic",
+    "title_available",
+    "authors_available",
+    "venue_available",
+    "year_available",
+    "semantic_available"
+  ],
+  "weights": [
+    2.8406966093934454,
+    3.574637049293494,
+    0.0,
+    3.3943762162519064,
+    1.746900484092771,
+    -1.2547533599969598,
+    -1.2266398286273446,
+    -1.2547533599969598,
+    -1.2547533599969611,
+    -1.2547533599969611
+  ],
+  "intercept": -1.2547533599969611,
+  "threshold": 0.7561157397939755,
+  "encoder_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "l2": 0.001,
+  "epochs": 1200,
+  "version": 0,
+  "calibrated": false,
+  "training_rows": 6579,
+  "training_positives": 1553,
+  "training_protocol": "Retrospective fixed positive-component partition; validation-selected L2 and threshold; no test optimization."
+}

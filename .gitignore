@@ -1,7 +1,23 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
 build/
 dist/
-__pycache__/
+build-macos/
+dist-macos/
+build-evidence/
+installer-output/
 *.spec
-*.exe
-.venv/
-venv/
+TwinFinderJobs/
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+
+# Local credentials are never source files.
+.env
+.env.*
+*.pem
+*.key

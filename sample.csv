@@ -1,0 +1,14 @@
+id,title,authors,venue,year,doi,note
+D01,Graph indexing for scholarly libraries,Alice Chen; Robert Singh,Library Systems,2021,10.example/demo01,Demonstration record
+D02,Graph indexing for scholarly libraries,Alice Chen; Robert Singh,Library Systems,2021,,Duplicate with missing DOI
+D03,Graph indexing for scholarly libraries,Alice Chen; Robert Singh,,2021,10.example/demo01,Alternate note retained
+D04,Graph indexing for scholarly libraries,Maria Gomez; Peter Jones,Library Systems,2021,10.example/demo04,"Same title, different authors"
+D05,Efficient entity resolution in citation databases,Nora Ahmed; David Wilson,Information Review,2020,10.example/demo05,Original publication
+D06,Efficient entity resolution in citation database,Nora Ahmed; David Wilson,Information Review,2020,,Title variation
+D07,Neural retrieval for scientific articles,Li Wang; Sara Ali,Retrieval Workshop,2022,10.example/demo07,Workshop version
+D08,Neural retrieval for scientific articles,Li Wang; Sara Ali,Journal of Retrieval,2023,10.example/demo08,Journal version: retain separately
+D09,Reliable metadata validation workflows,Omar Hassan,Digital Libraries,2019,,Distinct work
+D10,Reliable metadata validation workflow,Omar Hassan,Digital Libraries,2019,10.example/demo10,"Same work, fuller record"
+D11,Ocean circulation observations,Eva Costa,Marine Research,2018,,Unrelated record
+D12,Mountain ecology observations,James Miller,Ecology Reports,2017,,Unrelated record
+D13,Graph indexing for scholarly libraries,Alice Chen; Matthew Reed,Library Systems,2021,10.example/demo13,"Separate same-title work: reject merge"

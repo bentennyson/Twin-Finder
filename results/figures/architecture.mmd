@@ -1,0 +1,14 @@
+flowchart TD
+  A[CSV or JSONL on local disk] --> B[Resumable SQLite import]
+  B --> C[Bounded lexical candidate discovery]
+  C --> D[Frozen MiniLM title embeddings]
+  B --> E[Metadata comparison features]
+  D --> F[Learned logistic matching classifier]
+  E --> F
+  F --> G[Scores and additive feature explanations]
+  G --> H[Human accept reject or skip]
+  H --> I[Fixed record partition for feedback]
+  I --> J[Train proposed classifier on training feedback]
+  J --> K[Validate and explicitly activate or reject]
+  K --> F
+  H --> L[Stream reviewed merges and audit ZIP]
